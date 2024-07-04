@@ -1,1 +1,22 @@
+# Example nginx.conf.j2 template with events section
+events {
+    worker_connections  1024;  # Adjust according to your server's requirements
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    server {
+        listen 80;
+        server_name {{ nginx_server_name }};
+
+        location / {
+            root {{ nginx_html_root }};
+            index index.html;
+        }
+    }
+
+    # Additional configurations can go here
+}
 
